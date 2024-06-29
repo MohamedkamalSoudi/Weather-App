@@ -8,7 +8,7 @@ void main() => runApp(
       WeatherApp(), // Wrap your app
     );
 
-class WeatherApp extends StatelessWidget {
+class WeatherApp extends StatelessWidget { 
   const WeatherApp({super.key});
 
   @override
@@ -22,5 +22,5 @@ class WeatherApp extends StatelessWidget {
         home: HomeView(),
       ),
     );
-  }
+  } 
 }
