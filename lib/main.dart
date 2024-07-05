@@ -1,26 +1,25 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/views/home_view.dart';
+import 'cubits/get _weather_cubit/get_weather_cubit.dart';
 
 void main() => runApp(
-      WeatherApp(), // Wrap your app
+      const  WeatherApp(), // Wrap your app
     );
 
-class WeatherApp extends StatelessWidget { 
+class WeatherApp extends StatelessWidget {
   const WeatherApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
+    return BlocProvider(
+      create: (context) => GetWeatherCubit(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: HomeView(),
       ),
     );
-  } 
+  }
 }

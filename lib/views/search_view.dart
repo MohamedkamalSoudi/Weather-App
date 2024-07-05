@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../cubits/get _weather_cubit/get_weather_cubit.dart';
+
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
 
@@ -15,6 +18,8 @@ class SearchView extends StatelessWidget {
         child: Center(
           child: TextField(
             onSubmitted: (value) async {
+              var getWeatherCubit = BlocProvider.of<GetWeatherCubit>(context);
+              getWeatherCubit.getWeather(cityName: value);
               Navigator.pop(context);
             },
             decoration: InputDecoration(
@@ -35,4 +40,3 @@ class SearchView extends StatelessWidget {
     );
   }
 }
-
