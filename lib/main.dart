@@ -1,25 +1,25 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/views/home_view.dart';
-import 'cubits/get _weather_cubit/get_weather_cubit.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/pages/home_page.dart';
+import 'package:weather_app/providers/weather_provider.dart';
 
-void main() => runApp(
-      const  WeatherApp(), // Wrap your app
-    );
+void main() {
+  runApp(ChangeNotifierProvider(
+     create: (context) {
+        return WeatherProvider();
+      },
+    child: WeatherApp()));
+}
 
 class WeatherApp extends StatelessWidget {
-  const WeatherApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetWeatherCubit(),
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: HomeView(),
+    return MaterialApp(
+      theme: ThemeData(
+      primarySwatch: Provider.of<WeatherProvider>(context).weatherData == null ?  Colors.blue : Provider.of<WeatherProvider>(context).weatherData!.getThemeColor()  ,
       ),
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
